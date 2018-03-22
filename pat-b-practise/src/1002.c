@@ -2,8 +2,8 @@
 #include <memory.h>
 
 int main() {
-    char* n;
-    char* f = n;
+    char n[100];                   // 如果用char* n的话gcc就会报段错误，原因就是char* 指向的是常量区的只读段，g++同样有这个错误，clang则不会
+    char* f;
     int sum = 0;
     char* pinyin[10] = {
         "ling",
@@ -18,6 +18,7 @@ int main() {
         "jiu"
     };
     scanf("%s", n);
+    f = n;
     while (*f != '\0') {
         sum += (*f - '0');
         f += 1;

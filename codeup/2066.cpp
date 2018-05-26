@@ -1,38 +1,63 @@
 #include <cstdio>
-#include <cstring>
+#include <vector>
+#include <map>
+#include <set>
 #include <algorithm>
 
 using namespace std;
 
 int main() {
     int m, n;
+    vector<int> numbers, groups;
+    set<int> sortedNumbers, sortedGroups;
+    vector<int> vsN, vsG;
+    vector<pair<int, int> > num_group;
     scanf("%d", &m);
     while (m--) {
         scanf("%d", &n);
-        int n, max = 0, maxnum = ~0x0;
-        int numbers[n];
-        int groups[n];
+        int temp;
         for (int i = 0; i < n; i++) {
-            scanf("%d", &numbers[i]);
-            if (numbers[i] > maxnum) {
-                maxnum = numbers[i];
+            scanf("%d", &temp);
+            numbers.push_back(temp);
+            sortedNumbers.insert(temp);
+        }
+        for (set<int>::iterator it = sortedNumbers.begin(); it != sortedNumbers.end(); it++) {
+            vsN.push_back(*it);
+        }
+        for (int i = 0; i < n; i++) {
+            scanf("%d", &temp);
+            groups.push_back(temp);
+            sortedGroups.insert(temp);
+            num_group.push_back(make_pair(numbers[i], temp));
+        }
+
+        for (set<int>::iterator it = sortedGroups.begin(); it != sortedGroups.end(); it++) {
+            vsG.push_back(*it);
+        }
+
+        for (int i = 0; i < vsG.size(); i++) {
+            printf("%d={", vsG[i]);
+            for (int j = 0; j < vsN.size(); j++) {
+                printf("%d=", vsN[j]);
+                int count = 0;
+                for (int k = 0; k < num_group.size(); k++) {
+                    if (num_group[k].first == vsN[j] && num_group[k].second == vsG[i]) {
+                        count += 1;
+                    }
+                }
+                if (j != vsN.size() - 1) {
+                    printf("%d,", count);
+                }
             }
+            printf("}\n");
         }
-        for (int i = 0; i < n; i++) {
-            scanf("%d", &groups[i]);
-            if (groups[i] > max) {
-                max = groups[i];
-            }
-        }
-        int matrix[max + 1][maxnum + 1];
-        memset(matrix, 0, sizeof(matrix));
-        for (int i = 0; i < n; i++) {
-            matrix[groups[i]][numbers[i]] += 1;
-        }
-        sort(groups, groups + n);
-        int before = groups[0];
-        for (int i = 0; i < n; i++) {
-            
-        }
+        numbers.clear();
+        groups.clear();
+        sortedNumbers.clear();
+        sortedGroups.clear();
+        vsN.clear();
+        vsG.clear();
+        num_group.clear();
     }
+    return 0;
 }

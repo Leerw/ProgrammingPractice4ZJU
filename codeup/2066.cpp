@@ -1,4 +1,5 @@
 #include <cstdio>
+#include <iostream>
 #include <vector>
 #include <map>
 #include <set>
@@ -8,16 +9,18 @@ using namespace std;
 
 int main() {
     int m, n;
-    vector<int> numbers, groups;
+    vector<int> numbers;
     set<int> sortedNumbers, sortedGroups;
     vector<int> vsN, vsG;
     vector<pair<int, int> > num_group;
     scanf("%d", &m);
+    // cin >> m;
     while (m--) {
         scanf("%d", &n);
         int temp;
         for (int i = 0; i < n; i++) {
-            scanf("%d", &temp);
+            // scanf("%d", &temp);
+            cin >> temp;
             numbers.push_back(temp);
             sortedNumbers.insert(temp);
         }
@@ -26,7 +29,6 @@ int main() {
         }
         for (int i = 0; i < n; i++) {
             scanf("%d", &temp);
-            groups.push_back(temp);
             sortedGroups.insert(temp);
             num_group.push_back(make_pair(numbers[i], temp));
         }
@@ -47,12 +49,13 @@ int main() {
                 }
                 if (j != vsN.size() - 1) {
                     printf("%d,", count);
+                } else {
+                    printf("%d", count);
                 }
             }
             printf("}\n");
         }
         numbers.clear();
-        groups.clear();
         sortedNumbers.clear();
         sortedGroups.clear();
         vsN.clear();

@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "chrono": "cpp",
-        "cstdio": "cpp"
+        "cstdio": "cpp",
+        "array": "cpp",
+        "*.tcc": "cpp"
     }
 }

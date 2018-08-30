@@ -66,7 +66,7 @@ int main() {
         weight[id1] += w;
         weight[id2] += w;
         G[id1][id2] += w;
-        G[id1][id2] += w;
+        G[id2][id1] += w;
     }
     DFSTrave();
     cout << Gang.size() << endl;

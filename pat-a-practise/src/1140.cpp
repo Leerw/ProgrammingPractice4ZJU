@@ -16,7 +16,6 @@ int main() {
       swap(hashtable[0], hashtable[hashtable[0]]);
       step++;
     }
-    noindex = 0;
     while (noindex == hashtable[noindex] && noindex < n) {
       noindex++;
     }
